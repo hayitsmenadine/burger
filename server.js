@@ -16,9 +16,11 @@ app.use(express.static('public/assets'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-require('./controllers/burgers_controller.js')(app);
+var routes = require('./controllers/burgers_controller.js')(app);
 
-
+app.use("/", routes);
+app.use("/update", routes);
+app.use("/create", routes);
 
 var port = 3000;
 
